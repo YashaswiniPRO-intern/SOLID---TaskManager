@@ -1,0 +1,25 @@
+Task Manager :
+
+SRP(Single Responsibility Principle): a class must have single reason to change
+TaskModel - represents only data
+TaskService - Business logic
+TaskRepo - DB operations
+TaskController - Exposes API endpoints
+
+OCP(Open Closed Principle):Open for extension, closed for modification
+ITaskService and ITaskRepository - allow for extension without modification i.e 
+we can simply extend repo and service without modifying existing classes.
+Interfaces and automapper allows extension without modifying core logic.
+
+LSP:(Liskov Substitution Principle):A child class must be substitutable for the base class without changing the behavior(of base class) 
+Since TaskService and TaskRepo depend on interfaces rather than concrete implementations...we can easily replace
+those classes with another DB implementation.
+
+ISP(Interface Segregation Principle):A class should not be forced to implement unecessary interfaces/methods.
+ITaskService: defines only the methods related to task logic.
+ITaskRepository: DB operations
+The classes do not implement uneccesary methods.
+
+DI(Dependency Inversion):high-level module should not be dependent on low level modules, instead both must be dependent on abstractions(interfaces)
+TaskController depends on ITaskService and not TaskService directly;
+TaskService depends on ITaskRepository and not TaskRepository directly.
